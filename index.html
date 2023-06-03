@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Exchangerate</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="amount">
+            <label for="quantity">amount</label><br>
+            <input type="number" id="quantity" name="quantity" min="1">
+            <i class="material-icons" style="font-size:30px">swap_horiz</i>
+            <hr>
+        </div>
+        <div class="currency">
+            <div class="turning-into-box">
+                <div class="turning-into-img">
+                    <img id="turning-into-img" src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Eu-Flag.jpg"
+                        alt="">
+                </div>
+                <select name="turning-into" id="turning-into">
+                    <option value="TRY" class="option">TRY (&#8378) / Türk Lirası </option>
+                    <option value="USD">USD (&#36) / Amerikan Doları</option>
+                    <option value="EUR">EUR (&#8364) / Euro</option>
+                    <option value="GBP">GBP (&#163) / İngiliz Sterlini</option>
+                    <option value="NOK">NOK (kr) / Norveç Kronu</option>
+                    <option value="SEK">SEK (kr) / İsveç Kronu</option>
+                </select>
+            </div>
+
+            <div class="converted-box">
+                <div class="converted-img">
+                    <img id="-img" src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Eu-Flag.jpg" alt="">
+                </div>
+                <select name="converted" id="converted">
+                    <option value="USD">USD (&#36) / Amerikan Doları</option>
+                    <option value="TRY">TRY (&#8378) / Türk Lirası </option>
+                    <option value="EUR">EUR (&#8364) / Euro</option>
+                    <option value="GBP">GBP (&#163) / İngiliz Sterlini</option>
+                    <option value="NOK">NOK (kr) / Norveç Kronu</option>
+                    <option value="SEK">SEK (kr) / İsveç Kronu</option>
+                </select>
+            </div>
+
+
+        </div>
+
+
+
+
+        <!-- <div class="currency">
+            <select name="turning-into" id="turning-into">
+                <option value="TRY">TRY</option>
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+                <option value="NOK">NOK</option>
+                <option value="SEK">SEK</option>
+            </select>
+            <div class="shift">
+                <i class="material-icons" style="font-size:30px">swap_horiz</i>
+            </div>
+            <select name="converted" id="converted">
+                <option value="USD">USD</option>
+                <option value="TRY">TRY</option>
+                <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+                <option value="NOK">NOK</option>
+                <option value="SEK">SEK</option>
+            </select>
+        </div>
+        <div class="currency-transform">
+            <input type="number" name="value" id="value" placeholder="value">
+            <input type="number" name="result" id="result" placeholder="result" disabled>
+
+        </div> -->
+
+
+
+
+
+    </div>
+
+
+
+
+
+    <script src="exchangerate.js"></script>
+</body>
+
+</html>
