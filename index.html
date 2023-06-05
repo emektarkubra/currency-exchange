@@ -14,7 +14,7 @@
 <body>
     <div class="container">
         <div class="navbar">
-            <!-- <i class="material-icons">arrow_back</i>  -->
+            <i class="material-icons">arrow_back</i>
             <!-- ! for second page -->
             <div class="tooltip"><i class="fa fa-bars"></i>
                 <span class="tooltiptext">multi-converter</span>
@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        <div class="amount">
+        <!-- <div class="amount">
             <label for="quantity">Amount</label><br>
             <div class="input">
                 <input type="number" id="quantity" name="quantity" min="1" autofocus>
@@ -50,7 +50,7 @@
 
             <div class="converted-box">
                 <div class="converted-img">
-                    <img id="-img" src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Eu-Flag.jpg" alt="">
+                    <img id="converted-img" src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Eu-Flag.jpg" alt="">
                 </div>
                 <select name="converted" id="converted">
                     <option value="USD">USD / Dollar (&#36)</option>
@@ -73,24 +73,47 @@
         </div>
         <div class="result">
             <p>13 EUR = 242421.3 TR</p>
-        </div>
+        </div> -->
 
         <!-- ! for second page -->
 
-        <!-- <div class="add-currency">
-            <img id="coin" src="img/5bbe4c20b2b8a-0952213ebaf4ae9d1868f8e77ced8ad6.png" alt="">
-            <div>
-                <p class="choose-currency">Select currencies</p>
-                <p class="add-currency">To add a currency +</p>
-            </div>
-            <div class="icon">
-                <i class="fa fa-plus-circle"></i>
-            </div>
-        </div> -->
 
-        <!-- !--------------------- -->
+        <div class="box">
+            <i class="fa fa-search"></i>
+            <input type="text" id="search-input" placeholder="Search..">
+        </div>
+        <div class="box">
+            <div class="img">
+                <img class="currency-img" src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Eu-Flag.jpg" alt="">
+            </div>
+            <div class="currency-text">USD</div>
+            <input type="checkbox" name="checkbox" id="check-box">
+        </div>
+        <div class="box">
+            <div class="img">
+                <img class="currency-img" src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Eu-Flag.jpg" alt="">
+            </div>
+            <div class="currency-text">USD</div>
+            <input type="checkbox" name="checkbox" id="check-box">
+        </div>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     </div>
+
+
     <script src="exchangerate.js"></script>
 </body>
 
