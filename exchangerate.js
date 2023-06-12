@@ -14,9 +14,6 @@ function getCurrencyData(url) {
     })
 }
 
-// let select1;
-// let exchangeBox1;
-
 const firstCurrency = document.querySelector("#turning-into");
 const secondCurrency = document.querySelector("#converted");
 const firstCurrencyImg = document.querySelector("#turning-into-img");
@@ -26,6 +23,7 @@ const convertButton = document.querySelector("#convert-btn");
 const valueForm = document.querySelector("#value-form");
 const resultText = document.querySelector(".result-text");
 const exchangeIcon = document.querySelector("#exchange");
+const darkButton = document.querySelector(".fa-moon-o");
 
 firstCurrency.addEventListener("change", () => {
     let value1 = firstCurrency.options[firstCurrency.selectedIndex].value;
@@ -50,7 +48,6 @@ secondCurrency.addEventListener("change", () => {
 })
 
 convertButton.addEventListener("click", getData);
-valueForm.addEventListener("submit", getData);
 exchangeIcon.addEventListener("click", exchangeCurrency);
 
 
@@ -59,7 +56,7 @@ val = firstCurrency.value
 
 function getData(e) {
 
-    let url = `https://open.er-api.com/v6/latest/${val}`
+    let url = `https://open.er-api.com/v6/latest/${val}`;
 
     getCurrencyData(url)
         .then((data) => {
@@ -70,7 +67,6 @@ function getData(e) {
         .catch((err) => {
             console.log(err);
         })
-    // e.preventDefault();
 }
 
 
@@ -100,8 +96,6 @@ function convertCurrencyRate() {
     else resultText.textContent = `${quantitiy} ${firstCurrency.value} = ${result} ${secondCurrency.value}`
 }
 
-
-
 // multi-exchange page
 const container = document.querySelector(".container");
 const multiConverter = document.querySelector(".fa-bars");
@@ -128,13 +122,13 @@ function createConvertPage() {
     selectCurrencyImg.className = "select-currency-img";
     selectCurrencyImg.id = "multiple-select-img";
     selectCurrencyImg.alt = "image not found";
-    selectCurrencyImg.src = "https://htmlcolorcodes.com/assets/images/colors/white-color-solid-background-1920x1080.png";
+    selectCurrencyImg.src = "http://www.istanbulbayrak.com/image/genel/big/Products8.jpg";
 
-    const select = document.createElement("select");
-    select.name = "multiple-select";
-    select.id = "multiple-select";
+    const multipleSelect = document.createElement("select");
+    multipleSelect.name = "multiple-select";
+    multipleSelect.id = "multiple-select";
 
-    select.innerHTML = `
+    multipleSelect.innerHTML = `
         <option value="select" disabled selected>Select Currency</option>
         <option value="USD">USD / Dollar (&#36)</option>
         <option value="TRY" class="option">TRY / Turkish lira (&#8378)</option>
@@ -144,19 +138,27 @@ function createConvertPage() {
         <option value="SEK">SEK / Swedish krona (kr)</option>
     `
 
-
-
     container.appendChild(multiSelectBox);
     multiSelectBox.appendChild(selectCurrencyImg);
-    multiSelectBox.appendChild(select);
+    multiSelectBox.appendChild(multipleSelect);
 
     const exchangeContainer = document.createElement("div");
     exchangeContainer.id = "exchange-container";
 
+    //* dark-mode
+    if (container.classList == "container dark-mode") {
+        multipleSelect.classList.toggle("dark-mode");
+    }
+    darkButton.addEventListener("click", () => {
+        multipleSelect.classList.toggle("dark-mode");
+        if (container.classList == "container dark-mode") {
+            darkButton.className = "fa fa-sun-o"
+        } else {
+            darkButton.className = "fa fa-moon-o"
+        }
+    });
 
-
-
-    select.addEventListener("change", () => {
+    multipleSelect.addEventListener("change", () => {
 
         const exchangeBox = document.createElement("div");
         exchangeBox.className = "exchange-box";
@@ -180,12 +182,12 @@ function createConvertPage() {
         const currencySymbol = document.createElement("p");
         currencySymbol.className = "currency-symbol";
 
-        if (select.value == "USD") currencySymbol.innerHTML = "&#36";
-        else if (select.value == "TRY") currencySymbol.innerHTML = "&#8378";
-        else if (select.value == "EUR") currencySymbol.innerHTML = "&#8364";
-        else if (select.value == "GBP") currencySymbol.innerHTML = "&#163";
-        else if (select.value == "NOK") currencySymbol.innerHTML = "kr";
-        else if (select.value == "SEK") currencySymbol.innerHTML = "kr";
+        if (multipleSelect.value == "USD") currencySymbol.innerHTML = "&#36";
+        else if (multipleSelect.value == "TRY") currencySymbol.innerHTML = "&#8378";
+        else if (multipleSelect.value == "EUR") currencySymbol.innerHTML = "&#8364";
+        else if (multipleSelect.value == "GBP") currencySymbol.innerHTML = "&#163";
+        else if (multipleSelect.value == "NOK") currencySymbol.innerHTML = "kr";
+        else if (multipleSelect.value == "SEK") currencySymbol.innerHTML = "kr";
 
 
         const info2Box = document.createElement("div");
@@ -197,9 +199,20 @@ function createConvertPage() {
         numberInput.id = "exchange-input";
         numberInput.placeholder = "0.0000";
 
+        //* dark-mode
+
+        if (container.classList == "container dark-mode") {
+            exchangeBox.classList.toggle("dark-mode");
+            numberInput.classList.toggle("dark-mode")
+        }
+        darkButton.addEventListener("click", () => {
+            exchangeBox.classList.toggle("dark-mode");
+            numberInput.classList.toggle("dark-mode");
+        });
+
         const currencyInfoBox = document.createElement("div");
         currencyInfoBox.className = "currency-info";
-        currencyInfoBox.textContent = select.options[select.selectedIndex].text;
+        currencyInfoBox.textContent = multipleSelect.options[multipleSelect.selectedIndex].text;
 
         const transformInfo = document.createElement("div");
         transformInfo.className = "transform-info";
@@ -218,8 +231,7 @@ function createConvertPage() {
         info2Box.appendChild(currencyInfoBox);
         info2Box.appendChild(transformInfo);
 
-
-        let value = select.options[select.selectedIndex].value;
+        let value = multipleSelect.options[multipleSelect.selectedIndex].value;
 
         if (value == "USD") {
             selectCurrencyImg.src = "https://www.ppi-int.com/wp-content/uploads/2021/08/USA@2x.png";
@@ -246,7 +258,6 @@ function createConvertPage() {
 
         numberInput.addEventListener("keyup", calculateCurrencyRate);
         closeIconBox.addEventListener("click", deleteExchangeBox);
-    
 
         function calculateCurrencyRate(event) {
             val = event.target.nextSibling.textContent.slice(0, 3);
@@ -267,10 +278,7 @@ function createConvertPage() {
             let box = e.target.parentElement.parentElement;
             box.remove();
         }
-
     })
-
-
 
     backArrowIcon.addEventListener("click", goBack);
 
@@ -284,31 +292,24 @@ function createConvertPage() {
         currencyBox.style.display = "flex";
     }
     multiConverter.removeEventListener("click", createConvertPage);
-    
 }
 
+//* dark-mode
 
 
+darkButton.addEventListener("click", darkMode);
 
-
-
-
-
-//! dark-mode
-
-const darkButton = document.querySelector(".fa-moon-o");
-darkButton.addEventListener("click", darkMode1);
-
-function darkMode1() {
+function darkMode() {
     const a = document.querySelector("a");
+    container.classList == "container"
     container.classList.toggle("dark-mode");
     quantity.classList.toggle("dark-mode");
     firstCurrency.classList.toggle("dark-mode-currency");
     secondCurrency.classList.toggle("dark-mode-currency");
     a.classList.toggle("dark-mode-a");
-    select1.classList.toggle("dark-mode-currency");
-    exchangeBox.classList.toggle("dark-mode-currency");
+    if (container.classList == "container dark-mode") {
+        darkButton.className = "fa fa-sun-o"
+    } else {
+        darkButton.className = "fa fa-moon-o"
+    }
 }
-
-
-//!!!!!!!!!!!!!!!!!!!!

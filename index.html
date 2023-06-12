@@ -14,13 +14,11 @@
 <body>
     <div class="container">
         <div class="navbar">
-            <!-- <i class="material-icons">arrow_back</i> -->
-
+            <!--* <i class="material-icons">arrow_back</i> -->
             <div class="tooltip">
                 <i class="fa fa-bars"></i>
                 <span class="tooltiptext">multi-converter</span>
             </div>
-
             <div class="tooltip">
                 <i class="fa fa-moon-o"></i>
                 <span class="tooltiptext">light</span>
@@ -31,20 +29,20 @@
             <label for="value">Amount</label><br>
             <div class="numberInputBox">
                 <form action="#" id="value-form">
-                    <input type="number" id="value" name="quantity" autofocus>
+                    <input type="number" class="value" id="value" name="quantity" autofocus>
                 </form>
-                <a href="#" id="exchange">
+                <a href="#" id="exchange" class="exchange">
                     <i class="fa fa-exchange"></i>
                 </a>
             </div>
             <hr>
         </div>
-
         <div class="currency">
+
             <div class="turning-into-box">
                 <img class="select-currency-img" id="turning-into-img"
                     src="https://www.ppi-int.com/wp-content/uploads/2021/08/USA@2x.png" alt="">
-                <select name="turning-into" id="turning-into">
+                <select name="turning-into" class="turning-into" id="turning-into">
                     <option value="USD">USD / Dollar (&#36)</option>
                     <option value="TRY">TRY / Turkish lira (&#8378)</option>
                     <option value="EUR">EUR / Euro (&#8364)</option>
@@ -58,7 +56,7 @@
                 <img class="select-currency-img" id="converted-img"
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Roundel_flag_of_Turkey.svg/1000px-Roundel_flag_of_Turkey.svg.png?20140314192128"
                     alt="">
-                <select name="converted" id="converted">
+                <select name="converted" class="converted" id="converted">
                     <option value="TRY">TRY / Turkish lira (&#8378)</option>
                     <option value="USD">USD / Dollar (&#36)</option>
                     <option value="EUR">EUR / Euro (&#8364)</option>
@@ -71,14 +69,12 @@
             <div class="transform">
                 <input id="convert-btn" type="button" value="convert">
             </div>
-            <div class="text">
-                <p>or press Enter key</p>
-            </div>
+            
             <div class="result">
                 <p class="result-text"></p>
             </div>
 
-            <!-- ! for return page -->
+            <!-- * multi-converter -->
 
             <!-- <div class="multiple-select-box">
                 <img class="select-currency-img" id="multiple-select-img"
@@ -93,7 +89,6 @@
                     <option value="SEK">SEK / Swedish krona (kr)</option>
                 </select>
             </div> -->
-
 
             <!-- <div id="exchange-container">
                 <div class="exchange-box">
@@ -117,9 +112,7 @@
                 </div>
             </div> -->
 
-
         </div>
-
         <script src="exchangerate.js"></script>
 </body>
 

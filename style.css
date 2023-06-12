@@ -30,6 +30,7 @@ body {
     justify-content: end;
 }
 .material-icons {
+    /* border: 1px solid red; */
     font-size: 1.8vw;
     cursor: pointer;
     margin-right: 27vw; 
@@ -47,11 +48,17 @@ body {
     margin-left: 0.8em;
     cursor: pointer;
 }
+.fa-moon-o:hover {
+    color: #2252ff;
+}
+.fa-sun-o {
+    margin-left: 0.8em;
+    cursor: pointer;
+}
 .fa-sun-o:hover {
     color: #2252ff;
 }
-
-/*! css for main page */
+/* convert page */
 .amount {
     width: 86%;
     height: auto;
@@ -64,6 +71,9 @@ label {
     font-family: "robotoregular", Arial, Helvetica, sans-serif;
     color: #9b9b9b;
     padding-left: 0.3vw;
+}
+form {
+    width: 100%;
 }
 #value {
     width: 93%;
@@ -100,61 +110,52 @@ a {
     width: 100%;
     display: flex;
     flex-direction: column;
-    
-
 }
 .turning-into-box {
-    width: 100%;
     margin-bottom: 1.5vw;
     display: flex;
     flex-direction: row;
-    justify-content:space-between;
-    align-self: center;
+    justify-content:center;
     margin: 0ch;
-    margin-left: 4.1vw;
     margin-bottom: 1.5vw;
 }
 #turning-into {
     border: 1px solid rgba(168, 165, 165, 0.548);
     border-radius: 5px;
-    /* background-color: white; */
     color: black;
     width: 85%;
     height: 5vw;
     font-size: 1.5vw;
     font-family: "robotoregular", Arial, Helvetica, sans-serif;
-    margin-left: 0.5vw;
     outline: none;
     align-self: center;
     padding-left: 4.3vw;
     cursor: pointer;
+    /* -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;  */  
 }
 .select-currency-img {
-    width: 100%;
+    width: 100%; 
     height: 100%;
     border-radius: 15em;
     z-index: 1;
-    position:fixed;
+    margin-right:25%;
 }
 .converted-box {
-    width: 100%;
     margin-bottom: 1.5vw;
     display: flex;
     flex-direction: row;
-    justify-content:space-between;
-    align-self: center;
-    margin-left: 4.1vw;
+    justify-content:center;
 }
 #converted {
     border: 1px solid rgba(168, 165, 165, 0.548);
-    /* background-color: white; */
     border-radius: 5px;
     color: black;
     width: 85%;
     height: 5vw ;
     font-size: 1.5vw;
     font-family: "robotoregular", Arial, Helvetica, sans-serif;
-    margin-left: 0.5vw;
     outline: none;
     z-index: 0;
     align-self: center;
@@ -184,18 +185,6 @@ hr {
     cursor: pointer;
     margin-bottom: 1vw;
 }
-.text { 
-    font-family: "robotoregular", Arial, Helvetica, sans-serif;
-    font-size: 1vw;
-    color: #9b9b9b;
-    width: 79%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-self: center;
-    margin: 0vw;   
-    margin-bottom: 2vw;
-}
 .result {
     width: 80%;
     height: auto;
@@ -203,6 +192,7 @@ hr {
     font-size: 1.8vw;
     font-weight:bold;
     text-align: center;
+    margin-top: 2.5vw;
     margin-bottom: 1vw;
     align-self: center;
 }
@@ -213,7 +203,7 @@ span {
     color: black;
     font-size: 1vw;
 }
-/*! css for return page */
+/* multi-converter */
 .multiple-select-box {
     width: 93.5%;
     display: flex;
@@ -247,18 +237,16 @@ span {
     position: relative;
     z-index: 0;
 }
-
 #exchange-container {
-    /* border: 1px solid red; */
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    
+    align-items: center; 
 }
 .exchange-box {
     background-color: white;
     border: 1px solid #cccccc;
-    width: 90%;
+    width: 90.5%;
     height: 9vw;
     display: flex;
     flex-direction: column;
@@ -273,6 +261,7 @@ span {
 }
 .fa-close {
     color: #7a828c;
+    font-size: 1vw;
 }
 .fa-close:hover {
     color: #2252ff;
@@ -308,7 +297,7 @@ span {
     width: 90%;
     border: none;
     border-bottom: 1px solid #cccccc;
-    background-color: white;
+    /* background-color: white; */
     font-size: 2vw;
     margin-bottom: 1vw;
     outline: none;
@@ -324,8 +313,7 @@ span {
 .transform-info {
    font-size: 1.2vw;
 }
-
-/*!  tooltip */
+/*  tooltip */
 .tooltip {
     position: relative;
 }
@@ -333,7 +321,7 @@ span {
     visibility: hidden;
     font-size: 1vw;
     font-family: "robotoregular", Arial, Helvetica, sans-serif;
-    width: 9vw;
+    width: 8vw;
     height: auto;
     background-color: #2252ff;
     color: #fff;
@@ -343,41 +331,40 @@ span {
     position: absolute;
     z-index: 1;
     top: 150%;
-    left: 50%;
     margin-left: -5.2vw;
 }
-  
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    border-width: 0.3vw;
+    border-style: solid;
+    border-color: transparent transparent #2252ff transparent;
+}
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
-
-/* !scroll bar */
-
+/*scroll bar */
 /* width */
 ::-webkit-scrollbar {
     width: 0.5vw;
-}
-  
+} 
 /* Track */
 ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px grey; 
     border-radius: 1vw; 
-}
-   
+} 
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: #7e7c7c; 
     border-radius: 1vw;  
-}
-  
+} 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #4d4b4b; ;   
 }
-
-
-/* ! dark mode */
-
+/*  dark mode */
 .dark-mode {
     background-color: #0d1924;
     color: white;
@@ -387,9 +374,53 @@ span {
     color: white;
 }
 .dark-mode-a {
-    /* background-color: #253d52; */
     color: #0d1924;
 }
-
-
-
+.dark-mode-select {
+    background-color: #1a2a38;
+}
+/* responsive design */
+@media only screen and (min-width: 200px) and (max-width: 700px) {
+    .container {width: 70%; height: 60vw;}
+    .select-currency-img {margin-top: 1.6vw;margin-right:53%;width: 4.5vw;height: 4.5vw;}
+    #turning-into {height: 8vw;font-size: 3vw;}
+    #converted {height: 8vw;font-size: 3vw;}
+    .material-icons {margin-right: 54vw; font-size: 3vw;}
+    .currency-info {font-size: 2.7vw;}
+    #exchange-input {font-size: 3vw;}
+    .currency-symbol {font-size: 3vw;}
+    #turning-into {padding-left: 6vw;}
+    #converted {padding-left: 6vw;}
+    #multiple-select {height: 3.5em;font-size: 2.5vw;padding-left: 6.8vw;}
+    #exchange-img {width: 4.5vw;height: 4.5vw;}
+    #convert-btn {height: 7vw;font-size: 3vw;}
+    .exchange-box {height: 12vw;padding: 0.5vw;margin-bottom: 1.2vw;}
+    .navbar {font-size: 2.5vw;}
+    .fa-close {font-size: 2vw;}
+    label {font-size: 2.3vw;}
+    .fa-exchange {font-size: 3.5vw;}
+    #value {font-size: 4.5vw;}
+    .result {font-size: 3vw;}  
+}
+@media only screen and (min-width: 700px) and (max-width: 1075px) {
+    .container {width: 45%;height: 48vw;}
+    .select-currency-img {margin-top: 1.5vw;margin-right:31%;width: 3.5vw;height: 3.5vw;}
+    #turning-into {height: 7vw;font-size: 2vw;}
+    #converted {height: 7vw;font-size: 2vw;}
+    .material-icons {margin-right: 35vw;font-size: 2vw;}
+    .currency-info {font-size: 2vw;}
+    #exchange-input {font-size: 2vw;}
+    .currency-symbol {font-size: 2vw;}
+    #turning-into {padding-left: 6vw;}
+    #converted {padding-left: 6vw;}
+    #multiple-select {height: 3.5em;font-size: 2vw;padding-left: 5.5vw;}
+    #exchange-img {width: 3.5vw;height: 3.5vw;}
+    #convert-btn {height: 6vw;font-size: 2vw;}
+    .exchange-box {height: 10vw;padding: 0.5vw;margin-bottom: 1.2vw;}
+    .navbar {font-size: 2vw;}
+    .fa-close {font-size: 1.5vw;}
+    label {font-size: 1.5vw;}
+    .fa-exchange {font-size: 2.5vw;}
+    #value {font-size: 3.5vw;}
+    .result {margin-top: 1.1vw;font-size: 2.5vw;}
+} 
