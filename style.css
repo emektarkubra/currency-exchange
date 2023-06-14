@@ -30,7 +30,6 @@ body {
     justify-content: end;
 }
 .material-icons {
-    /* border: 1px solid red; */
     font-size: 1.8vw;
     cursor: pointer;
     margin-right: 27vw; 
@@ -129,11 +128,8 @@ a {
     font-family: "robotoregular", Arial, Helvetica, sans-serif;
     outline: none;
     align-self: center;
-    padding-left: 4.3vw;
+    padding-left: 4.7vw;
     cursor: pointer;
-    /* -webkit-appearance:none;
-    -moz-appearance:none;
-    appearance:none;  */  
 }
 .select-currency-img {
     width: 100%; 
@@ -159,7 +155,7 @@ a {
     outline: none;
     z-index: 0;
     align-self: center;
-    padding-left: 4.3vw;
+    padding-left: 4.7vw;
     cursor: pointer;
 }
 hr {
@@ -345,6 +341,7 @@ span {
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
+
 /*scroll bar */
 /* width */
 ::-webkit-scrollbar {
@@ -364,6 +361,7 @@ span {
 ::-webkit-scrollbar-thumb:hover {
     background: #4d4b4b; ;   
 }
+
 /*  dark mode */
 .dark-mode {
     background-color: #0d1924;
@@ -379,6 +377,7 @@ span {
 .dark-mode-select {
     background-color: #1a2a38;
 }
+
 /* responsive design */
 @media only screen and (min-width: 200px) and (max-width: 700px) {
     .container {width: 70%; height: 60vw;}

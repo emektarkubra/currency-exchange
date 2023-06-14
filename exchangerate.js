@@ -1,5 +1,33 @@
-function getCurrencyData(url) {
+const firstCurrency = document.querySelector("#turning-into");
+const secondCurrency = document.querySelector("#converted");
+const firstCurrencyImg = document.querySelector("#turning-into-img");
+const secondCurrencyImg = document.querySelector("#converted-img");
+const quantity = document.querySelector("#value");
+const convertButton = document.querySelector("#convert-btn");
+const valueForm = document.querySelector("#value-form");
+const resultText = document.querySelector(".result-text");
+const exchangeIcon = document.querySelector("#exchange");
+const darkButton = document.querySelector(".fa-moon-o");
+const container = document.querySelector(".container");
+const multiConverter = document.querySelector(".fa-bars");
+const amountBox = document.querySelector(".amount");
+const currencyBox = document.querySelector(".currency");
+const navbarBox = document.querySelector(".navbar");
 
+
+document.addEventListener("DOMContentLoaded", () => {
+    getData("USD");
+});
+convertButton.addEventListener("click", convertCurrencyRate);
+exchangeIcon.addEventListener("click", exchangeCurrency);
+multiConverter.addEventListener("click", createConvertPage);
+firstCurrency.addEventListener("change", changeFirstCurrencyImg);
+secondCurrency.addEventListener("change", changeSecondCurrencyImg);
+
+
+let firstCurrencyData;
+
+async function getCurrencyData(url) {
     return new Promise((resolve, reject) => {
         fetch(url)
             .then((data) => {
@@ -14,18 +42,16 @@ function getCurrencyData(url) {
     })
 }
 
-const firstCurrency = document.querySelector("#turning-into");
-const secondCurrency = document.querySelector("#converted");
-const firstCurrencyImg = document.querySelector("#turning-into-img");
-const secondCurrencyImg = document.querySelector("#converted-img");
-const quantity = document.querySelector("#value");
-const convertButton = document.querySelector("#convert-btn");
-const valueForm = document.querySelector("#value-form");
-const resultText = document.querySelector(".result-text");
-const exchangeIcon = document.querySelector("#exchange");
-const darkButton = document.querySelector(".fa-moon-o");
+async function getData(val) {
+    let url = `https://open.er-api.com/v6/latest/${val}`;
+    try {
+        firstCurrencyData = await getCurrencyData(url);
+    } catch (error) {
+        console.log(error);
+    }
+}
 
-firstCurrency.addEventListener("change", () => {
+function changeFirstCurrencyImg() {
     let value1 = firstCurrency.options[firstCurrency.selectedIndex].value;
     if (value1 == "USD") firstCurrencyImg.src = "https://www.ppi-int.com/wp-content/uploads/2021/08/USA@2x.png";
     else if (value1 == "TRY") firstCurrencyImg.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Roundel_flag_of_Turkey.svg/1000px-Roundel_flag_of_Turkey.svg.png?20140314192128";
@@ -34,9 +60,9 @@ firstCurrency.addEventListener("change", () => {
     else if (value1 == "NOK") firstCurrencyImg.src = "https://static.wixstatic.com/media/d593dc_81c91a2fa21247068e44ff4ccc06ca35~mv2.gif";
     else if (value1 == "SEK") firstCurrencyImg.src = "https://sites.create-cdn.net/siteimages/59/9/9/599971/18/3/7/18377789/1000x1000.png?1591203751";
     else firstCurrencyImg.src = "https://htmlcolorcodes.com/assets/images/colors/white-color-solid-background-1920x1080.png";
-})
+}
 
-secondCurrency.addEventListener("change", () => {
+function changeSecondCurrencyImg() {
     let value2 = secondCurrency.options[secondCurrency.selectedIndex].value;
     if (value2 == "USD") secondCurrencyImg.src = "https://www.ppi-int.com/wp-content/uploads/2021/08/USA@2x.png";
     else if (value2 == "TRY") secondCurrencyImg.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Roundel_flag_of_Turkey.svg/1000px-Roundel_flag_of_Turkey.svg.png?20140314192128";
@@ -45,50 +71,22 @@ secondCurrency.addEventListener("change", () => {
     else if (value2 == "NOK") secondCurrencyImg.src = "https://static.wixstatic.com/media/d593dc_81c91a2fa21247068e44ff4ccc06ca35~mv2.gif";
     else if (value2 == "SEK") secondCurrencyImg.src = "https://sites.create-cdn.net/siteimages/59/9/9/599971/18/3/7/18377789/1000x1000.png?1591203751";
     else secondCurrencyImg.src = "https://htmlcolorcodes.com/assets/images/colors/white-color-solid-background-1920x1080.png";
-})
-
-convertButton.addEventListener("click", getData);
-exchangeIcon.addEventListener("click", exchangeCurrency);
-
-
-let firstCurrencyData;
-val = firstCurrency.value
-
-function getData(e) {
-
-    let url = `https://open.er-api.com/v6/latest/${val}`;
-
-    getCurrencyData(url)
-        .then((data) => {
-            firstCurrencyData = data;
-            convertCurrencyRate(firstCurrencyData);
-            console.log(firstCurrencyData)
-        })
-        .catch((err) => {
-            console.log(err);
-        })
 }
-
 
 //main-exchange page
 
-function exchangeCurrency(e) {
-    let value;
-    let text;
-    value = secondCurrency.value;
-    text = secondCurrency.options[secondCurrency.selectedIndex].text;
+function exchangeCurrency() {
+    let value = secondCurrency.value;
+    let text = secondCurrency.options[secondCurrency.selectedIndex].text;
     secondCurrency.value = firstCurrency.value;
     secondCurrency.options[secondCurrency.selectedIndex].text = firstCurrency.options[firstCurrency.selectedIndex].text
     firstCurrency.value = value;
     firstCurrency.options[firstCurrency.selectedIndex].text = text;
-
-    val = firstCurrency.value
-    getData(e);
     convertCurrencyRate();
 }
 
-function convertCurrencyRate() {
-
+async function convertCurrencyRate() {
+    this.firstCurrencyData = await getData(firstCurrency.value);
     let coefficient = firstCurrencyData.rates[secondCurrency.value];
     let quantitiy = Number(quantity.value);
     let result = (quantitiy * coefficient).toFixed(4);
@@ -97,15 +95,10 @@ function convertCurrencyRate() {
 }
 
 // multi-exchange page
-const container = document.querySelector(".container");
-const multiConverter = document.querySelector(".fa-bars");
-const amountBox = document.querySelector(".amount");
-const currencyBox = document.querySelector(".currency");
-const navbarBox = document.querySelector(".navbar");
-
-multiConverter.addEventListener("click", createConvertPage);
 
 function createConvertPage() {
+    darkButton.addEventListener("click", turnDarkMode);
+
     multiConverter.style.color = "#2252ff";
     amountBox.style.display = "none";
     currencyBox.style.display = "none";
@@ -149,16 +142,16 @@ function createConvertPage() {
     if (container.classList == "container dark-mode") {
         multipleSelect.classList.toggle("dark-mode");
     }
-    darkButton.addEventListener("click", () => {
-        multipleSelect.classList.toggle("dark-mode");
-        if (container.classList == "container dark-mode") {
-            darkButton.className = "fa fa-sun-o"
-        } else {
-            darkButton.className = "fa fa-moon-o"
-        }
-    });
 
-    multipleSelect.addEventListener("change", () => {
+    function turnDarkMode() {
+        multipleSelect.classList.toggle("dark-mode");
+        if (container.classList == "container dark-mode") darkButton.className = "fa fa-sun-o";
+        else darkButton.className = "fa fa-moon-o";
+    };
+
+    multipleSelect.addEventListener("change", createExchange);
+
+    function createExchange() {
 
         const exchangeBox = document.createElement("div");
         exchangeBox.className = "exchange-box";
@@ -203,7 +196,7 @@ function createConvertPage() {
 
         if (container.classList == "container dark-mode") {
             exchangeBox.classList.toggle("dark-mode");
-            numberInput.classList.toggle("dark-mode")
+            numberInput.classList.toggle("dark-mode");
         }
         darkButton.addEventListener("click", () => {
             exchangeBox.classList.toggle("dark-mode");
@@ -259,16 +252,15 @@ function createConvertPage() {
         numberInput.addEventListener("keyup", calculateCurrencyRate);
         closeIconBox.addEventListener("click", deleteExchangeBox);
 
-        function calculateCurrencyRate(event) {
+        async function calculateCurrencyRate(event) {
             val = event.target.nextSibling.textContent.slice(0, 3);
-            getData();
+            this.firstCurrencyData = await getData(val);
 
             let quantitiy = event.target.value;
 
             for (let i = 0; i < exchangeContainer.children.length; i++) {
                 let text2 = exchangeContainer.children[i].children[1].children[1].children[1].textContent.slice(0, 3)
                 let coefficient = firstCurrencyData.rates[text2];
-                console.log(coefficient);
                 let result = (quantitiy * coefficient).toFixed(4);
                 exchangeContainer.children[i].children[1].children[1].children[0].placeholder = result;
             }
@@ -278,7 +270,7 @@ function createConvertPage() {
             let box = e.target.parentElement.parentElement;
             box.remove();
         }
-    })
+    }
 
     backArrowIcon.addEventListener("click", goBack);
 
@@ -295,7 +287,6 @@ function createConvertPage() {
 }
 
 //* dark-mode
-
 
 darkButton.addEventListener("click", darkMode);
 
