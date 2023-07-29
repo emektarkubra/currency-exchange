@@ -42,39 +42,6 @@ OR to get currency for based on TRY:
 [https://open.er-api.com/v6/latest/TRY](https://open.er-api.com/v6/latest/TRY)
 
 
-### How to use
-
-Here is a JavaScript example of fetching the entire API. Just change the  endpoint for fetching different APIs. In this project, URL used effective.
-
-```javascript
-let firstCurrencyData;
-
-async function getCurrencyData(url) {
-    return new Promise((resolve, reject) => {
-        fetch(url)
-            .then((data) => {
-                return data.json();
-            })
-            .then((data) => {
-                resolve(data);
-            })
-            .catch((err) => {
-                reject(err);
-            })
-    })
-}
-
-async function getData(val) {
-    let url = `https://open.er-api.com/v6/latest/${val}`;
-    try {
-        firstCurrencyData = await getCurrencyData(url);
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-```
-
 ## 🚀  Getting Started
 
 There are no prerequisites for this project.
